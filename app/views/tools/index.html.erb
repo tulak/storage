@@ -1,29 +1,38 @@
-<h1>Listing tools</h1>
-
-<table>
+<%- model_class = Tool -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Tool %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @tools.each do |tool| %>
       <tr>
+        <td><%= tool.id %></td>
         <td><%= tool.name %></td>
         <td><%= tool.price %></td>
-        <td><%= tool.user %></td>
-        <td><%= link_to 'Show', tool %></td>
-        <td><%= link_to 'Edit', edit_tool_path(tool) %></td>
-        <td><%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l tool.created_at, format: :long %></td>
+        <td>
+          <%= link_to tool_path(tool), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to tool_path(tool), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Tool', new_tool_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_tool_path,
+            :class => 'btn btn-primary' %>
