@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tool_id: 
+  from: 2014-09-10 19:28:49
+  to: 2014-09-10 19:28:49
+  user_id: 
+
+two:
+  tool_id: 
+  from: 2014-09-10 19:28:49
+  to: 2014-09-10 19:28:49
+  user_id: 
